@@ -1,0 +1,12 @@
+---
+- name: My First Playbook
+  hosts: devops
+  become: true 
+  become_user: root
+  tasks:
+   - name: Create User
+     user:
+      name: alc-users-harika
+      password: $6$kdlafklakdj$jVBXr3pp3MyLrgxpTrdJJyGg6oiHyEKOA/Hk0XktvUZJExw6upj736L0Zgk6aLCJdH7yVtYTQVF/boZqubKNG/
+      state: present
+...

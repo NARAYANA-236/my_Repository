@@ -1,0 +1,21 @@
+---
+- name: Play to create a group and then user
+  hosts: devops
+  become: true
+  gather_facts: false
+  become_user: root
+  tasks:
+   - name: Task1 - Create group 
+   #Create a group
+     group:
+      name: alc-user-harika
+      state: present
+   - name: Task2 - create user and add the above created group as primary group
+   #User Module to create user
+     user: 
+      name: fx
+      group: alc-user-harika 
+      comment:  adding user to group
+      state: present
+      password: $6$kdlafklakdj$jVBXr3pp3MyLrgxpTrdJJyGg6oiHyEKOA/Hk0XktvUZJExw6upj736L0Zgk6aLCJdH7yVtYTQVF/boZqubKNG/
+...
