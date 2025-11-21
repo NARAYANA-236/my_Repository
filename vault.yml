@@ -1,0 +1,28 @@
+---
+#ansible-vault create user_sec.yml: To create ansible valut file
+#ansible_vault view user_sec.yml : To view the ocntents of the file
+#ansible-vault edit user_sec.yml : To edit the file
+#ansible-vault rekey user_sec.yml: To change the vault password
+#ansible-vault encrypt flatfile.yml --output=user_sec.yml : Create an encrypted vault from normal file
+#ansible-valut decrypt user_sec.yml --output=Normalfile.yml : To cretae decrypted file from encrypted vault
+#ansible-playbook --ask-vault-pass sec_play1.yml : To run play which is using vault future
+# You can put password in a file and use the run the playbook. Ex: vi pass.txt and type vault password.
+#ansible-playbook --vault-password-file=pass.txt sec_play1.yml: Run play without providing password interactively
+#play using ansible vault to set password for created users
+- name: create users and set password through ansible vault
+  hosts: localhost
+  become: true
+  vars_files:
+   - vars_files/vault.password
+  tasks:
+   - name: Create users
+     user:
+      name: testuser
+      password: "{{password | password_hash('sha512')}}"
+      update_password: on_create
+      state: present
+     loop:
+      - rocky
+      - jocky
+      - micky
+...
