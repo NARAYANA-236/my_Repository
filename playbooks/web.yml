@@ -12,6 +12,7 @@
        src: "{{ playbook_dir }}/../files/*"
        dest: /var/www/html/
        recursive: yes
+       remote_src: yes
    - name: Start and enable httpd
      service:
        name: httpd
