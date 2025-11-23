@@ -7,11 +7,12 @@
      yum:
        name: httpd
        state: present
-   - name: Copy index.html
+   - name: Copy all files under files/
      copy:
-       src: "{{ playbook_dir }}/../files/"
+       src: "{{ item }}"
        dest: /var/www/html/
-       remote_src: yes
+     with_fileglob:
+        - "{{ playbook_dir }}/../files/*"
    - name: Start and enable httpd
      service:
        name: httpd
