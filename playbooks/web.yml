@@ -9,7 +9,7 @@
        state: present
    - name: Copy index.html
      copy:
-       src: ../files/*
+       src: "{{ playbook_dir }}/../files/*"
        dest: /var/www/html/
        recursive: yes
    - name: Start and enable httpd
