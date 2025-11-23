@@ -1,0 +1,28 @@
+---
+- name: Configure Webserver
+  hosts: web
+  become: yes
+  tasks:
+   - name: Install Apache
+     yum:
+       name: httpd
+       state: present
+   - name: Copy index.html
+     copy:
+       src: ../files/*
+       dest: /var/www/html/
+       recursive: yes
+   - name: Start and enable httpd
+     service:
+       name: httpd
+       state: started
+       enabled: yes
+   - name: Test access locally
+     uri:
+       url: http://localhost
+       return_content: yes
+     register: http_result
+   - name: Fail if content not OK
+     fail:
+       msg: "Web content not served properly!"
+     when: "'Welcome' not in http_result.content"
