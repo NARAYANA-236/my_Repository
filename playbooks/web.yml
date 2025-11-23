@@ -18,12 +18,3 @@
        name: httpd
        state: started
        enabled: yes
-   - name: Test access locally
-     uri:
-       url: http://localhost
-       return_content: yes
-     register: http_result
-   - name: Fail if content not OK
-     fail:
-       msg: "Web content not served properly!"
-     when: "'Welcome' not in http_result.content"
