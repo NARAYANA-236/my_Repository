@@ -9,7 +9,7 @@
        state: present
    - name: Copy index.html
      copy:
-       src: "{{ playbook_dir }}/../files/*"
+       src: "{{ playbook_dir }}/../files/"
        dest: /var/www/html/
        remote_src: yes
    - name: Start and enable httpd
