@@ -12,12 +12,10 @@ pipeline {
     
         stage('Run Ansible Playbook') {
             steps {
-                sshagent(['ansible-ssh-key']) {
                     sh '''
                         echo "Running Ansible..."
                         ansible-playbook -i inventory/hosts playbooks/web.yml
                     '''
-                }
             }
         }
         stage('Validate Deployment') {
