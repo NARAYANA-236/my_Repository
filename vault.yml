@@ -13,7 +13,11 @@
   hosts: localhost
   become: true
   vars_files:
+<<<<<<< HEAD
    - vars_files/secure-info.yml
+=======
+   - vars_files/vault.password
+>>>>>>> 7b58ffcfad2761e9a4dcab406357a90061c2d248
   tasks:
    - name: Create users
      user:
@@ -25,3 +29,7 @@
       - rocky
       - jocky
       - micky
+<<<<<<< HEAD
+=======
+...
+>>>>>>> 7b58ffcfad2761e9a4dcab406357a90061c2d248
