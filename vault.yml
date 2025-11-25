@@ -13,7 +13,7 @@
   hosts: localhost
   become: true
   vars_files:
-   - vars_files/vault.password
+   - vars_files/secure-info.yml
   tasks:
    - name: Create users
      user:
